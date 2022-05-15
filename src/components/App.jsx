@@ -10,10 +10,12 @@ function App() {
   return (
     <BrowserRouter>
       <Menu />
-      <Routes>
-        <Route path='/' element={<Users/>}/>
-        <Route path='/Task' element={<Tareas/>}/>
-      </Routes>
+      <div className='Margin'>
+        <Routes>
+          <Route path='/' element={<Users/>}/>
+          <Route path='/Task' element={<Tareas/>}/>
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

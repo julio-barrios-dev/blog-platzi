@@ -29,7 +29,7 @@ class Users extends Component {
   render() {
     console.log(this.state.usuarios);
     return (
-      <div className='Margin'>
+      <div>
         <table className='Table'>
           <thead>
             <tr>
