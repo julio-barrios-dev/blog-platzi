@@ -5,7 +5,7 @@ import Users from './Users';
 
 const Tareas = () => <div>Tareas</div>;
 
-function App() {
+function App(props) {
 
   return (
     <BrowserRouter>
