@@ -20,7 +20,8 @@ class Users extends Component {
   );
 
   render() {
-    console.log(this.props);
+    console.log(this.props.cargando);
+    console.log(this.props.error);
     return (
       <div>
         <table className='Table'>
