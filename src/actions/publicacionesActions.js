@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL, LOADING, ERROR } from '../types/postTypes';
+import { GET_BY_USER ,GET_ALL, LOADING, ERROR } from '../types/postTypes';
 
 const API = 'https://jsonplaceholder.typicode.com/posts';
 
@@ -21,4 +21,14 @@ export const getAll = () => async (dispatch) => {
       payload: 'Algo salio mal, intente más tarde.'
     })
   }
+}
+
+export const getByUser = (key) => async (dispatch, getState) => {
+  const { usuarios } = getState().usersReducer;
+  const userId = usuarios[key].id;
+  const response = await axios.get(`${API}?userId=${userId}`);
+  dispatch({
+    type: GET_BY_USER,
+    payload: response.data
+  })
 }

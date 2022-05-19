@@ -5,17 +5,19 @@ import * as userActions from '../../actions/usersActions';
 import * as publicacionesActions from '../../actions/publicacionesActions';
 
 const { getAll: getAllUsers } = userActions;
-const { getAll: getAllPost } = publicacionesActions;
+const { getByUser: getPostByUser } = publicacionesActions;
 
 const Publicaciones = (props) => {
   const {key} = useParams();
 
   useEffect(() => {
-
-    if(!props.usersReducer.usuarios.length) {
-      props.getAllUsers();
+    const data = async () => {
+      if(!props.usersReducer.usuarios.length) {
+        await props.getAllUsers();
+      }
+      props.getPostByUser(key);
     }
-    
+    data();
   }, []);
   console.log(props);
   
@@ -37,7 +39,7 @@ const mapStateToProps = ({ usersReducer, publicacionesReducer }) => {
 }
 const mapDispatchToProps = {
   getAllUsers,
-  getAllPost  
+  getPostByUser  
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Publicaciones);
