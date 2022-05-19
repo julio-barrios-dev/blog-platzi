@@ -1,7 +1,7 @@
-import { GET_ALL, LOADING, ERROR } from "../types/usersTypes";
+import { LOADING, ERROR, GET_ALL } from "../types/postTypes";
 
 const INITIAL_STATE = {
-  usuarios: [],
+  publicaciones: [],
   cargando: false,
   error: ''
 };
@@ -9,11 +9,11 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case GET_ALL:
-        return {
-          ...state, 
-          usuarios: action.payload,
-          cargando: false
-        };
+      return {
+        ...state,
+        publicaciones: action.payload,
+        cagando: false
+      }
     case LOADING:
       return {...state, cargando: true};  
     case ERROR:
