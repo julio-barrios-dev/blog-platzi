@@ -9,20 +9,23 @@ import * as usersActions from '../../actions/usersActions';
 class Users extends Component {
 
   componentDidMount() {
-    this.props.getAll();
+    if(!this.props.usuarios.length) {
+      this.props.getAll();
+    };
   }
   addContent = () => {
     if (this.props.cargando) {
       return <Spinner />;
     }
     if (this.props.error) {
-      return <Fatal mensaje={this.props.error} />
+      return <Fatal message={this.props.error} />
     }
     return <Tabla />;
   
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <h1>Usuarios</h1>

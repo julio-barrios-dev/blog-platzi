@@ -3,7 +3,7 @@ import React from 'react';
 function Fatal(props) {
   return (
     <h2 className='Center rojo'>
-      { props.mensaje }
+      { props.message }
     </h2>
   );
 }
