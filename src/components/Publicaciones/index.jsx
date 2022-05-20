@@ -8,7 +8,7 @@ import * as userActions from '../../actions/usersActions';
 import * as publicacionesActions from '../../actions/publicacionesActions';
 
 const { getAll: getAllUsers } = userActions;
-const { getByUser: getPostByUser } = publicacionesActions;
+const { getByUser: getPostByUser, openClose } = publicacionesActions;
 
 const Publicaciones = (props) => {
   const {key} = useParams();
@@ -19,9 +19,9 @@ const Publicaciones = (props) => {
       if(!usersReducer.usuarios.length) {
         await props.getAllUsers();
       }
-/*       if (usersReducer.error) {
+      if (usersReducer.error) {
         return;
-      } */
+      }
       if(!usersReducer.usuarios[key].hasOwnProperty('post_key')) {
         props.getPostByUser(key);
       }
@@ -31,14 +31,14 @@ const Publicaciones = (props) => {
 
   const addUser = () => {
 
-    if (usersReducer.error) {
-      return <Fatal message={usersReducer.error} />
+    if (props.usersReducer.error) {
+      return <Fatal message={props.usersReducer.error} />
     }
-    if(!usersReducer.usuarios.length || usersReducer.cargando) {
+    if(!props.usersReducer.usuarios.length || props.usersReducer.cargando) {
       return <Spinner />;
     };
 
-    const name = usersReducer.usuarios[key].name
+    const name = props.usersReducer.usuarios[key].name
 
     return (
       <h1>
@@ -48,12 +48,53 @@ const Publicaciones = (props) => {
 
   }
 
+  const addPost = () => {
+    const {
+      usersReducer,
+      usersReducer: { usuarios },
+      publicacionesReducer,
+      publicacionesReducer: { publicaciones },
+    } = props;
+
+    if (!usuarios.length) return;
+    if (usersReducer.error) return;
+    if (publicacionesReducer.cargando) {
+      return <Spinner />;
+    }
+    if (publicacionesReducer.error) {
+      return <Fatal message={publicacionesReducer.error} />
+    }
+    if(!publicaciones.length) return;
+    if(!usuarios[key].hasOwnProperty('post_key')) return;
+
+    const { post_key } = usuarios[key];
+
+    return showInfo({ publicaciones, post_key })
+  };
+
+  const showInfo = ({ publicaciones, post_key }) => (
+    publicaciones[post_key].map((post, com_key) => (
+      <div 
+      className='Post_titulo'
+      key={post.id}
+      onClick={openClose(post_key, com_key)}
+      >
+        <h2>
+          { post.title }
+        </h2>
+        <h4>
+          { post.body }
+        </h4>
+      </div>
+    ))
+  )
+
   console.log(props);
   
   return (
     <div>
-      {key}
       {addUser()}
+      {addPost()}
     </div>
   );
 };
@@ -66,7 +107,8 @@ const mapStateToProps = ({ usersReducer, publicacionesReducer }) => {
 }
 const mapDispatchToProps = {
   getAllUsers,
-  getPostByUser  
+  getPostByUser,
+  openClose 
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Publicaciones);

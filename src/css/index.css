@@ -30,4 +30,7 @@ body {
 .rojo {
   color: red;
 }
+.Post_titulo {
+  border-top: 1px solid black;
+}
 
