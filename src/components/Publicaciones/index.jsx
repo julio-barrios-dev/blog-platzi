@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from '../General/Spinner'; 
-import Fatal from '../General/Fatal'; 
+import Fatal from '../General/Fatal';
+import Comentarios from '../Publicaciones/Comentarios';
 
 import * as userActions from '../../actions/usersActions';
 import * as publicacionesActions from '../../actions/publicacionesActions';
 
 const { getAll: getAllUsers } = userActions;
-const { getByUser: getPostByUser, openClose } = publicacionesActions;
+const { getByUser: getPostByUser, openClose, getComments } = publicacionesActions;
 
 const Publicaciones = (props) => {
   const {key} = useParams();
@@ -69,15 +70,15 @@ const Publicaciones = (props) => {
 
     const { post_key } = usuarios[key];
 
-    return showInfo({ publicaciones, post_key })
+    return showInfo(publicaciones[post_key], post_key )
   };
 
-  const showInfo = ({ publicaciones, post_key }) => (
-    publicaciones[post_key].map((post, com_key) => (
+  const showInfo = ( publicaciones, post_key ) => (
+    publicaciones.map((post, com_key) => (
       <div 
       className='Post_titulo'
       key={post.id}
-      onClick={openClose(post_key, com_key)}
+      onClick={() => showCommentary(post_key, com_key)}
       >
         <h2>
           { post.title }
@@ -85,9 +86,17 @@ const Publicaciones = (props) => {
         <h4>
           { post.body }
         </h4>
+        {
+          (post.open) ? <Comentarios /> : ''
+        }
       </div>
     ))
-  )
+  );
+  
+  const showCommentary = (post_key, com_key) => {
+    props.openClose(post_key, com_key);
+    props.getComments()
+  };
 
   console.log(props);
   
@@ -108,7 +117,8 @@ const mapStateToProps = ({ usersReducer, publicacionesReducer }) => {
 const mapDispatchToProps = {
   getAllUsers,
   getPostByUser,
-  openClose 
+  openClose,
+  getComments
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Publicaciones);

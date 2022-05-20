@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_BY_USER, LOADING, ERROR } from '../types/postTypes';
+import { UPDATED, LOADING, ERROR } from '../types/postTypes';
 import * as usersTypes from '../types/usersTypes';
 
 const { GET_ALL: GET_ALL_USERS } = usersTypes;
@@ -29,7 +29,7 @@ export const getByUser = (key) => async (dispatch, getState) => {
       news
     ];
     dispatch({
-      type: GET_BY_USER,
+      type: UPDATED,
       payload: updated_posts
     });
     const post_key = updated_posts.length - 1;
@@ -52,7 +52,28 @@ export const getByUser = (key) => async (dispatch, getState) => {
   }
 }
 
-export const openClose = (post_key, com_key) => (dispatch) => {
-  console.log(post_key, com_key);
+export const openClose = (post_key, com_key) => (dispatch, getState) => {
+  const { publicaciones } = getState().publicacionesReducer;
+  const selected = publicaciones[post_key][com_key];
+
+  const updated = {
+    ...selected,
+    open: !selected.open
+  };
+
+  const updated_posts = [...publicaciones];
+  updated_posts[post_key] = [
+    ...publicaciones[post_key]
+  ];
+  updated_posts[post_key][com_key] = updated;
+
+  dispatch({
+    type: UPDATED,
+    payload: updated_posts
+  });
+  
 };
+
+export const getComments = (post_key, com_key) => (dispatch, getState) => {
+}
 
