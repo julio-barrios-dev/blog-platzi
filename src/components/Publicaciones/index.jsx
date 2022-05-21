@@ -78,7 +78,7 @@ const Publicaciones = (props) => {
       <div 
       className='Post_titulo'
       key={post.id}
-      onClick={() => showCommentary(post_key, com_key)}
+      onClick={() => showCommentary(post_key, com_key, post.comments)}
       >
         <h2>
           { post.title }
@@ -87,15 +87,17 @@ const Publicaciones = (props) => {
           { post.body }
         </h4>
         {
-          (post.open) ? <Comentarios /> : ''
+          (post.open) ? <Comentarios comments={post.comments} /> : ''
         }
       </div>
     ))
   );
   
-  const showCommentary = (post_key, com_key) => {
+  const showCommentary = (post_key, com_key, comments) => {
     props.openClose(post_key, com_key);
-    props.getComments()
+    if (!comments.length) {
+      props.getComments(post_key, com_key)
+    }
   };
 
   console.log(props);

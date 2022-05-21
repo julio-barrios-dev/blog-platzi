@@ -32,5 +32,9 @@ body {
 }
 .Post_titulo {
   border-top: 1px solid black;
+  cursor: pointer;
+}
+li {
+  margin: 15px 0 15px0;
 }
 
