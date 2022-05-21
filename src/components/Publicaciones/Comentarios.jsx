@@ -13,7 +13,7 @@ const Comentarios = (props) => {
 
   const addComments = () => (
     props.comments.map((comment) => (
-      <li>
+      <li key={comment.id} >
         <b>
           <u>
             {comment.email}
