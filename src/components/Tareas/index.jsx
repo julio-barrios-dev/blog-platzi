@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Spinner from '../../components/General/Spinner';
 import Fatal from '../../components/General/Fatal';
 
@@ -55,6 +56,11 @@ const Tareas = (props) => {
   console.log(props);
   return (
     <div>
+      <Link to='/tareas/guardar'>
+        <button>
+          Agregar
+        </button>
+      </Link>
       {showContent()}
     </div>
   );
