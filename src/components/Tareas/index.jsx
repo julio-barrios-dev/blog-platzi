@@ -38,17 +38,29 @@ const Tareas = (props) => {
   };
 
   const addTasks = (user_id) => {
-    const { tareas } = props;
+    const { tareas, changeCheck } = props;
     const byUser = {
       ...tareas[user_id]
     }
 
     return Object.keys(byUser).map((task) => (
       <div key={task}>
-        <input type='checkbox' defaultChecked={byUser[task].completed} />
+        <input 
+          type='checkbox' 
+          defaultChecked={byUser[task].completed}
+          onChange={() => changeCheck(user_id, task)}
+        />
       {
         byUser[task].title
       }
+        <button className='m_left'>
+          <Link to={`/task/save/${user_id}/${task}`}>
+            Editar
+          </Link>
+        </button>
+        <button className='m_left'>
+          Guardar
+        </button>
       </div>
     ));
   }

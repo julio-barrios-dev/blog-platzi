@@ -18,6 +18,7 @@ function App(props) {
           <Route path='/task' element={<Tareas />}/>
           <Route path='/publicaciones/:key' element={<Publicaciones />}/>
           <Route path='/tareas/guardar' element={<TareasGuardar />}/>
+          <Route path='/task/save/:user_id/:task' element={<TareasGuardar />}/>
         </Routes>
       </div>
     </BrowserRouter>
