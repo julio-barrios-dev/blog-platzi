@@ -1,4 +1,4 @@
-import { GET_ALL, LOADING, ERROR } from "../types/tasksTypes";
+import { GET_ALL, LOADING, ERROR, CHANGE_USER_ID, CHANGE_TITLE, ADDED } from "../types/tasksTypes";
 
 const INITIAL_STATE = {
   tareas: {},
@@ -21,12 +21,12 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, cargando: true};  
     case ERROR:
       return {...state, error: action.payload, cargando: false };
-    case 'change_user_id':
+    case CHANGE_USER_ID:
       return {...state, usuario_id: action.payload };
-    case 'change_title':
+    case CHANGE_TITLE:
       return {...state, titulo: action.payload };
-    case 'added':
-      return {...state, tareas: {}, carando: false, error: '' };
+    case ADDED:
+      return {...state, tareas: {}, cargando: false, error: '' };
     default:
       return state;
   }

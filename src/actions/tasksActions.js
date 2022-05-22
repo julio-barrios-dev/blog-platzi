@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ALL, LOADING, ERROR } from '../types/tasksTypes';
+import { GET_ALL, LOADING, ERROR, CHANGE_USER_ID, CHANGE_TITLE, ADDED } from '../types/tasksTypes';
 
 
 export const getAll = () => async (dispatch) => {
@@ -35,13 +35,13 @@ export const getAll = () => async (dispatch) => {
 
 export const changeUserId = (user_id) => (dispatch) => {
   dispatch({
-    type: 'change_user_id',
+    type: CHANGE_USER_ID,
     payload: user_id 
   })
 }
 export const changeTitle = (title) => (dispatch) => {
   dispatch({
-    type: 'change_title',
+    type: CHANGE_TITLE,
     payload: title 
   })
 }
@@ -54,7 +54,7 @@ export const addTask = (newTask) => async (dispatch) => {
     const response = await axios.post('https://jsonplaceholder.typicode.com/todos', newTask);
     console.log(response.data);
     dispatch({
-      type: 'added'
+      type: ADDED
     })
   }
   catch(error) {

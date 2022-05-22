@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as taskActions from '../../actions/tasksActions';
+import Spinner from '../General/Spinner';
+import Fatal from '../General/Fatal';
+import { Redirect } from 'react-router-dom';
 
 const Guardar = (props) => {
 
@@ -18,6 +21,27 @@ const Guardar = (props) => {
       completed: false
     }
     addTask(newTask);
+  }
+  const disabled = () => {
+    const { usuario_id, titulo, cargando } = props;
+
+    if (cargando) {
+      return true;
+    }
+    if(!usuario_id || !titulo) {
+      return true;
+    }
+    return false;
+  }
+
+  const showAction = () => {
+    const { error, cargando } = props;
+    if (cargando) {
+      return <Spinner />;
+    }
+    if (error) {
+      return <Fatal message={error} />;
+    }
   }
 
   return (
@@ -41,9 +65,11 @@ const Guardar = (props) => {
       <br /><br />
       <button
         onClick={save}
+        disabled={disabled()}
       >
         Guardar
       </button>
+      { showAction() }
     </div>
   );
 };
