@@ -25,6 +25,8 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, usuario_id: action.payload };
     case 'change_title':
       return {...state, titulo: action.payload };
+    case 'added':
+      return {...state, tareas: {}, carando: false, error: '' };
     default:
       return state;
   }

@@ -10,6 +10,15 @@ const Guardar = (props) => {
   const changeTitle = (event) => {
     props.changeTitle(event.target.value);
   };
+  const save = () => {
+    const { usuario_id, titulo, addTask } = props;
+    const newTask = {
+      userId: usuario_id,
+      title: titulo,
+      completed: false
+    }
+    addTask(newTask);
+  }
 
   return (
     <div>
@@ -30,7 +39,9 @@ const Guardar = (props) => {
         onChange={changeTitle}
       />
       <br /><br />
-      <button>
+      <button
+        onClick={save}
+      >
         Guardar
       </button>
     </div>

@@ -46,3 +46,23 @@ export const changeTitle = (title) => (dispatch) => {
   })
 }
 
+export const addTask = (newTask) => async (dispatch) => {
+  dispatch({
+    type: LOADING
+  })
+  try {
+    const response = await axios.post('https://jsonplaceholder.typicode.com/todos', newTask);
+    console.log(response.data);
+    dispatch({
+      type: 'added'
+    })
+  }
+  catch(error) {
+    console.log(error.message);
+    dispatch({
+      type: ERROR,
+      payload: 'Intente mas tarde.'
+    })
+  }
+}
+
