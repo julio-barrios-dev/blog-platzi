@@ -99,8 +99,6 @@ const Publicaciones = (props) => {
       props.getComments(post_key, com_key)
     }
   };
-
-  console.log(props);
   
   return (
     <div>

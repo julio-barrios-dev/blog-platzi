@@ -20,6 +20,8 @@ const Guardar = (props) => {
       const tarea = tareas[user_id][task];
       changeUserId(tarea.userId);
       changeTitle(tarea.title)
+    } else {
+      props.cleanForm();
     }
   }, []);
 
@@ -78,7 +80,6 @@ const Guardar = (props) => {
       return <Fatal message={error} />;
     }
   }
-console.log(props);
   return (
     <div>
         {(props.regresar) ? <Navigate to='/task' />: ''}

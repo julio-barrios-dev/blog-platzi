@@ -9,10 +9,11 @@ import * as tasksActions from '../../actions/tasksActions';
 const Tareas = (props) => {
 
   useEffect(() => {
-    if (!Object.keys(props.tareas).length) {
-      props.getAll();
+    const { tareas, cargando, getAll } = props
+    if (!Object.keys(tareas).length && !cargando) {
+      getAll();
     }
-  }, []);
+  });
 
   const showContent = () => {
     const { tareas, cargando, error } = props;
@@ -38,7 +39,7 @@ const Tareas = (props) => {
   };
 
   const addTasks = (user_id) => {
-    const { tareas, changeCheck } = props;
+    const { tareas, changeCheck, deleteTask } = props;
     const byUser = {
       ...tareas[user_id]
     }
@@ -58,14 +59,12 @@ const Tareas = (props) => {
             Editar
           </Link>
         </button>
-        <button className='m_left'>
-          Guardar
+        <button className='m_left' onClick={() => deleteTask(task)}>
+          Eliminar
         </button>
       </div>
     ));
   }
-
-  console.log(props);
   return (
     <div>
       <Link to='/tareas/guardar'>

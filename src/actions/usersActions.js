@@ -14,7 +14,6 @@ export const getAll = () => async (dispatch) => {
     })
   }
   catch(error) {
-    console.log('Error', error.message);
     dispatch({
       type: ERROR,
       payload: 'Información de usuario no disponible.'

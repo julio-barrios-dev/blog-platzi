@@ -1,5 +1,13 @@
 import axios from 'axios';
-import { GET_ALL, LOADING, ERROR, CHANGE_USER_ID, CHANGE_TITLE, SAVE,UPDATE } from '../types/tasksTypes';
+import { 
+  GET_ALL, 
+  LOADING, 
+  ERROR, 
+  CHANGE_USER_ID, 
+  CHANGE_TITLE, 
+  SAVE,
+  UPDATE,
+  CLEAN } from '../types/tasksTypes';
 
 
 export const getAll = () => async (dispatch) => {
@@ -25,7 +33,6 @@ export const getAll = () => async (dispatch) => {
     })
   }
   catch(error) {
-    console.log('Error', error.message);
     dispatch({
       type: ERROR,
       payload: 'Información de tareas no disponible.'
@@ -52,13 +59,11 @@ export const addTask = (newTask) => async (dispatch) => {
   })
   try {
     const response = await axios.post('https://jsonplaceholder.typicode.com/todos', newTask);
-    console.log(response.data);
     dispatch({
       type: SAVE
     })
   }
   catch(error) {
-    console.log(error.message);
     dispatch({
       type: ERROR,
       payload: 'Intente mas tarde.'
@@ -72,13 +77,11 @@ export const edit = (tarea_editada) => async (dispatch) => {
   })
   try {
     const response = await axios.put(`https://jsonplaceholder.typicode.com/todos/${tarea_editada.id}`, tarea_editada);
-    console.log(response.data);
     dispatch({
       type: SAVE
     })
   }
   catch(error) {
-    console.log(error.message);
     dispatch({
       type: ERROR,
       payload: 'Intente mas tarde.'
@@ -106,5 +109,29 @@ export const changeCheck = (user_id, task) => (dispatch, getState) => {
     payload: updated
   })
 
+}
+
+export const deleteTask = (task) => async (dispatch) => {
+  dispatch({
+    type: LOADING
+  });
+  try {
+    const response = await axios.delete(`https://jsonplaceholder.typicode.com/todos/${task}`);
+    dispatch({
+      type: GET_ALL,
+      payload: {}
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: 'Servicio no disponible'
+    });
+  }
+}
+
+export const cleanForm = () => (dispatch) => {
+  dispatch({
+    type: CLEAN
+  })
 }
 
