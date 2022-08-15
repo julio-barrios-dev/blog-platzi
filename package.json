@@ -41,5 +41,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://Juliobarriosdev.gitgub.io/blog-platzi"
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
+  },
+  "homepage": "https://Juliobarriosdev.gitgub.io/blog-platzi/"
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Menu from './Menu';
-import Users from './Users';
-import Publicaciones from './Publicaciones';
-import Tareas from './Tareas';
-import TareasGuardar from './Tareas/Guardar';
+import Menu from './components/Menu';
+import Users from './components/Users';
+import Publicaciones from './components/Publicaciones';
+import Tareas from './components/Tareas';
+import TareasGuardar from './components/Tareas/Guardar';
 
 
 function App(props) {
