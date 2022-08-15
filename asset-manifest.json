@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/blog-platzi/static/css/main.d772cbbf.css",
+    "main.js": "/blog-platzi/static/js/main.5cd66a7f.js",
+    "index.html": "/blog-platzi/index.html",
+    "main.d772cbbf.css.map": "/blog-platzi/static/css/main.d772cbbf.css.map",
+    "main.5cd66a7f.js.map": "/blog-platzi/static/js/main.5cd66a7f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d772cbbf.css",
+    "static/js/main.5cd66a7f.js"
+  ]
+}
