@@ -58,7 +58,7 @@ const Tareas = (props) => {
         </div>
         <div>
           <button className='m_left'>
-            <Link to={`/task/save/${user_id}/${task}`}>
+            <Link to={`blog-platzi/task/save/${user_id}/${task}`}>
               Editar
             </Link>
           </button>

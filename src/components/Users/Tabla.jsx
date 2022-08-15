@@ -10,7 +10,7 @@ function Tabla(props) {
         <td>{ user.email }</td>
         <td>{ user.website }</td>
         <td>
-          <Link to={`/publicaciones/${key}`}>
+          <Link to={`blog-platzi/publicaciones/${key}`}>
             <div className="eye-solid icon" />
           </Link>
         </td>

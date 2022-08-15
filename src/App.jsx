@@ -14,11 +14,11 @@ function App(props) {
       <Menu />
       <div className='Margin'>
         <Routes>
-          <Route path='/' element={<Users/>}/>
-          <Route path='/task' element={<Tareas />}/>
-          <Route path='/publicaciones/:key' element={<Publicaciones />}/>
-          <Route path='/tareas/guardar' element={<TareasGuardar />}/>
-          <Route path='/task/save/:user_id/:task' element={<TareasGuardar />}/>
+          <Route path='blog-platzi/' element={<Users/>}/>
+          <Route path='blog-platzi/task' element={<Tareas />}/>
+          <Route path='blog-platzi/publicaciones/:key' element={<Publicaciones />}/>
+          <Route path='blog-platzi/tareas/guardar' element={<TareasGuardar />}/>
+          <Route path='blog-platzi/task/save/:user_id/:task' element={<TareasGuardar />}/>
         </Routes>
       </div>
     </BrowserRouter>

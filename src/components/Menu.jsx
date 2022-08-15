@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 function Menu() {
   return (
     <nav id='Menu'>
-      <Link to='/'>
+      <Link to='blog-platzi/'>
         Usuarios
       </Link>
-      <Link to='/Task'>
+      <Link to='blog-platzi/Task'>
         Tareas
       </Link>
     </nav>
