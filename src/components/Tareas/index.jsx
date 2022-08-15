@@ -45,23 +45,27 @@ const Tareas = (props) => {
     }
 
     return Object.keys(byUser).map((task) => (
-      <div key={task}>
-        <input 
-          type='checkbox' 
-          defaultChecked={byUser[task].completed}
-          onChange={() => changeCheck(user_id, task)}
-        />
-      {
-        byUser[task].title
-      }
-        <button className='m_left'>
-          <Link to={`/task/save/${user_id}/${task}`}>
-            Editar
-          </Link>
-        </button>
-        <button className='m_left' onClick={() => deleteTask(task)}>
-          Eliminar
-        </button>
+      <div className='Task' key={task}>
+        <div>
+          <input 
+            type='checkbox' 
+            defaultChecked={byUser[task].completed}
+            onChange={() => changeCheck(user_id, task)}
+          />
+          {
+            byUser[task].title
+          }
+        </div>
+        <div>
+          <button className='m_left'>
+            <Link to={`/task/save/${user_id}/${task}`}>
+              Editar
+            </Link>
+          </button>
+          <button className='m_left edit' onClick={() => deleteTask(task)}>
+            Eliminar
+          </button>
+        </div>
       </div>
     ));
   }
